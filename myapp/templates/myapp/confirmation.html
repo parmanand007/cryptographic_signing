@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/task_list.css' %}">
+    <title>Confirmation</title>
+</head>
+<body>
+
+    <header>
+        <h1>Your Header</h1>
+    </header>
+
+    <main>
+        <div class="confirmation-box">
+            <h2>Confirmation</h2>
+            <p>You entered: {{ entered_text }}</p>
+            <p>Generated Link: <a href="{{ generated_link }}">{{ generated_link }}</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Your Footer</p>
+    </footer>
+
+</body>
+</html>

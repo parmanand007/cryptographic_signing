@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/task_list.css' %}">
+    <title>Error</title>
+</head>
+<body>
+
+    <header>
+        <h1>Your Header</h1>
+    </header>
+
+    <main>
+        <div class="error-box">
+            <h2>Error</h2>
+            <p>There was an error processing your request. and error is {{error_message}}</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Your Footer</p>
+    </footer>
+
+</body>
+</html>

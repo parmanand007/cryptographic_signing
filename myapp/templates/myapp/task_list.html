@@ -1,0 +1,82 @@
+<!-- myapp/templates/myapp/task_list.html -->
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul>
+      Hello Striker {{tasks}}
+    </ul> {% endcomment %}
+    {% comment %} action="{% url 'add_task' %} {% endcomment %}
+    {% comment %} <form method="post" >
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <label for="description">Description:</label> {% endcomment %}
+        {% comment %} <textarea id="description" name="description" required></textarea> {% endcomment %}
+        {% comment %} <br>
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html> {% endcomment %}
+{% load static %}
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/task_list.css' %}">
+    <title>Your Webpage</title>
+</head>
+<body>
+
+    <header>
+        <h1>Your Header</h1>
+    </header>
+
+    <main>
+        <div class="first-box">
+            <h2>Your Input Box</h2>
+            <form method="post" action="{% url 'process_form1' %}">
+                {% csrf_token %}
+                <input type="text" name="user_input" placeholder="Enter something...">
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <div class="first-box">
+            <h2>Your Input Box</h2>
+            <form method="post" action="{% url 'process_form2' %}">
+                {% csrf_token %}
+                <input type="text" name="user_input" placeholder="Enter something...">
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="first-box">
+            <h2>Your Input Box</h2>
+            <form method="post" action="{% url 'process_form3' %}">
+                {% csrf_token %}
+                <input type="text" name="user_input" placeholder="Enter something...">
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+       
+
+    </main>
+
+    <footer>
+        <p>Your Footer</p>
+    </footer>
+
+</body>
+</html>
