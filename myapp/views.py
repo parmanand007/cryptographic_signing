@@ -45,7 +45,7 @@ def process_form1(request):
     if request.method == 'POST':
         entered_text = request.POST.get('user_input', '')
         encrypted_message = encrypt_message(entered_text, public_key)
-        generated_link = f'/myapp/show_encrypted_message/?message={encrypted_message}'
+        generated_link = f'/show_encrypted_message/?message={encrypted_message}'
         
         return render(request, 'myapp/confirmation.html', {'entered_text': entered_text, 'generated_link': generated_link})
 
@@ -103,7 +103,7 @@ def process_form2(request):
         entered_text = request.POST.get('user_input', '')
         
         encrypted_message=encrypt_message_fernet(entered_text)
-        generated_link = f'/myapp/show_encrypted_message_fernet/?message={encrypted_message}'
+        generated_link = f'/show_encrypted_message_fernet/?message={encrypted_message}'
         return render(request, 'myapp/confirmation.html', {'entered_text': entered_text, 'generated_link': generated_link})
     else:
         return render(request, 'myapp/error.html')
@@ -138,7 +138,7 @@ def process_form3(request):
     if request.method == 'POST':
         entered_text = request.POST.get('user_input', '')
         signed_message=sign_data_signer(entered_text)
-        generated_link = f'/myapp/show_encrypted_message_signer/?message={signed_message}'
+        generated_link = f'/show_encrypted_message_signer/?message={signed_message}'
         return render(request, 'myapp/confirmation.html', {'entered_text': entered_text, 'generated_link': generated_link})
     else:
         return render(request, 'myapp/error.html')
