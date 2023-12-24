@@ -74,6 +74,8 @@ How to Use:
     - Receive a digitally signed link for secure sharing.
     - Verify the authenticity of the received message using `show_text_signer(request)`.
 
+- **Run Server:**
+    - python manage.py runserver
 Note: Each encryption method provides a unique way to secure and share your information. If you encounter any issues or have questions, feel free to contact me.
 
 Thank you for choosing My App!
