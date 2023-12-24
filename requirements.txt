@@ -1,0 +1,4 @@
+django
+cryptography
+python-decouple
+pathlib
