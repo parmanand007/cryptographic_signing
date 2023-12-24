@@ -1,4 +1,9 @@
-django
-cryptography
-python-decouple
-pathlib
+asgiref==3.7.2
+cffi==1.16.0
+cryptography==41.0.7
+Django==5.0
+logging==0.4.9.6
+pycparser==2.21
+python-decouple==3.8
+sqlparse==0.4.4
+tzdata==2023.3
