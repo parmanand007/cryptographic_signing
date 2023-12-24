@@ -1,12 +1,12 @@
 from cryptography.fernet import Fernet
 from django.shortcuts import render
-from django.urls import reverse
-from urllib.parse import quote,unquote
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 import base64
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from django.core.signing import Signer
+
 def generate_key_pair():
     private_key = rsa.generate_private_key(
         public_exponent=65537,
@@ -144,9 +144,39 @@ def show_text_fernet(request):
     except Exception as e:
         return render(request, 'myapp/error.html', {'error_message': f"Unexpected error: {str(e)}"})
 
+#signer
+
+signer_secret_key = "your_secret_key"
+
+def sign_data_signer(message):
+    signer = Signer(key=signer_secret_key)
+    
+    signed_data = signer.sign_object({"message":message})
+    
+    return signed_data    
+
+def verify_data_signer(signed_data):
+    signer = Signer(key=signer_secret_key)
+    verified_data = signer.unsign_object(signed_data)
+
+    return verified_data
+
 def process_form3(request):
     if request.method == 'POST':
         entered_text = request.POST.get('user_input', '')
-        return render(request, 'myapp/confirmation.html', {'entered_text': entered_text})
+        signed_message=sign_data_signer(entered_text)
+        generated_link = f'/myapp/show_encrypted_message_signer/?message={signed_message}'
+        return render(request, 'myapp/confirmation.html', {'entered_text': entered_text, 'generated_link': generated_link})
     else:
         return render(request, 'myapp/error.html')
+
+def show_text_signer(request):
+    signed_message = request.GET.get('message', '')
+    print("signed_message",signed_message)
+    try:
+        unsigned_message = verify_data_signer(signed_message)
+        print("unsigned_message",unsigned_message)
+        
+        return render(request, 'myapp/show_text.html', {'entered_text': unsigned_message})
+    except Exception as e:
+        return render(request, 'myapp/error.html', {'error_message': f"Unexpected error: {str(e)}"})
